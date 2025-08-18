@@ -76,9 +76,7 @@ class manatgement_client():
         else:
             print(f"No se puede realizar la consignación. No se encontró una cuenta asociada a la identificación {identificacion}.")
             pass
-            
-            
-        
+      
     
     def withdrawal(self, identificacion):
         value = int(input("Valor a retirar:\n"))
@@ -117,9 +115,13 @@ class manatgement_client():
         if self.data_clientes is not None:
             row_client = self.data_clientes[self.data_clientes['Identificacion'] == identificacion]
             row_cuenta = self.data_cuentas[self.data_cuentas['ID_Cuenta'] == row_client['ID_cuenta'].values[0]]
-            row_client = row_cuenta.sort_values("Fecha_operacion", ascending=True)
+            if len(row_cuenta) == 0:
+                print(f"La identificación {identificacion}, no registra movimientos.\n")
+            else:
+                
+                row_client = row_cuenta.sort_values("Fecha_operacion", ascending=True)
             
-            saldo = row_client['Saldo'].iloc[-1]
-            print("El saldo de la cuenta es:", saldo)
+                saldo = row_client['Saldo'].iloc[-1]
+                print("El saldo de la cuenta es:", saldo)
         else:
             print("No se pudo recuperar la información de los clientes.")
