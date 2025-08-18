@@ -1,0 +1,11 @@
+ID_cliente,ID_cuenta,Nombres,Apellidos,Identificacion,Movil,Correo,Tipo cuenta
+1,1001,Laura,Ramírez Gómez,1032456789,3004567890,laura.ramirez@example.com,Ahorros
+2,1002,Andrés,Torres Castillo,802345671,3112345678,andres.torres@example.com,Corriente
+3,1003,Camila,Herrera López,4567891234,3156789123,camila.herrera@example.com,Ahorros
+4,1004,Sebastián,Martínez Rojas,9876543210,3229876543,sebastian.martinez@example.com,Corriente
+5,1005,Valentina,Díaz Moreno,1122334455,3011122334,valentina.diaz@example.com,Ahorros
+6,1006,Juan David,Gutiérrez Mejía,9988776655,3174455667,juan.gutierrez@example.com,Ahorros
+7,1007,Natalia,Cárdenas Peña,5566778899,3009988776,natalia.cardenas@example.com,Corriente
+8,1008,Santiago,Pardo Villamil,3344556677,3132233445,santiago.pardo@example.com,Ahorros
+9,1009,Daniela,Suárez Jiménez,7788990011,3204455667,daniela.suarez@example.com,Corriente
+10,1010,Felipe,Rincón Álvarez,6655443322,3167788990,felipe.rincon@example.com,Ahorros
