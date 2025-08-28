@@ -1,3 +1,39 @@
+
+"""
+data_clientes.py
+================
+
+Este módulo gestiona la lectura de datos de clientes y cuentas bancarias desde archivos CSV.
+
+Funcionalidades:
+----------------
+- Leer los datos de clientes y cuentas desde rutas especificadas en variables de entorno.
+- Manejar errores comunes al leer archivos CSV (archivo no encontrado, archivo vacío, errores de parseo).
+
+Clases:
+-------
+- Read_Cliente: 
+    - Métodos:
+        - read_data(): Devuelve dos DataFrames de pandas con los datos de clientes y cuentas.
+
+Entradas:
+---------
+- Rutas de archivos CSV definidas en variables de entorno:
+    - path_clientes
+    - path_cuentas
+
+Dependencias:
+-------------
+- pandas
+- python-dotenv
+- os
+- pathlib
+
+Autor: Tu Nombre
+Fecha: 2024
+
+"""
+
 import pandas as pd
 from dotenv import load_dotenv
 import os

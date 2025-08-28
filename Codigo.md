@@ -1,38 +1,53 @@
-"""
-clientes.py
-===========
+# codigo prueba
 
-Este módulo implementa la lógica para la gestión de clientes y operaciones bancarias.
+## data_clientes.py
 
-Funcionalidades:
-----------------
-- Crear un nuevo cliente y su cuenta asociada.
-- Realizar consignaciones y retiros en cuentas existentes.
-- Consultar el saldo de una cuenta por identificación.
+```python
+import pandas as pd
+from dotenv import load_dotenv
+import os
+from pathlib import Path
 
-Clases:
--------
-- new_client:
-    - Permite crear un nuevo cliente y guardar sus datos en el archivo correspondiente.
-- manatgement_client:
-    - Métodos:
-        - consignation(identificacion): Consigna dinero en la cuenta asociada.
-        - withdrawal(identificacion): Retira dinero de la cuenta asociada.
-        - query_client(identificacion): Consulta el saldo de la cuenta asociada.
 
-Entradas:
----------
-- Datos personales del cliente.
-- Identificación del cliente.
-- Valor a consignar o retirar.
+class Read_Cliente:
+    def __init__(self):
+        load_dotenv()
+        path_clientes = os.getenv('path_clientes')
+        path_cuentas = os.getenv('path_cuentas')
+        self.file_clientes_path = path_clientes
+        self.file_cuentas_path = path_cuentas
+        
+        
+    def read_data(self):
+        try:
+            data_clientes = pd.read_csv(self.file_clientes_path)
+            data_cuentas = pd.read_csv(self.file_cuentas_path) 
+           
+            return data_clientes, data_cuentas
+        except FileNotFoundError:
+            print(f"Error: The file at {self.file_clientes_path} was not found.")
+            print(f"Error: The file at {self.file_cuentas_path} was not found.")
+            return None
+        except pd.errors.EmptyDataError:
+            print("Error: The file is empty.")
+            return None
+        except pd.errors.ParserError:
+            print("Error: There was a parsing error while reading the file.")
+            return None
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}")
+            return None
+```
 
-Dependencias:
--------------
-- pandas
-- data_clientes.Read_Cliente
+## cajero.py
 
-"""
+```python
 
+```
+
+## clientes.py
+
+```python
 from data.data_clientes import Read_Cliente
 import pandas as pd
 class new_client():
@@ -160,3 +175,63 @@ class manatgement_client():
                 print("El saldo de la cuenta es:", saldo)
         else:
             print("No se pudo recuperar la información de los clientes.")
+```
+
+## main.py
+
+```python
+
+from src.clientes import new_client, manatgement_client
+import os
+
+while True:
+   # os.system('cls')  # Limpia la consola en Windows
+    print("Bienvenido al sistema de gestión de clientes.")
+    Identificacion = int(input("CC:\n"))
+    print("Indique que operacion desea realizar:")
+    print("1. Crear cliente")
+    print("2. Consultar saldo")
+    print("3. Consignar dinero")
+    print("4. Retirar dinero")
+    
+    opcion = input("Seleccione una opción:\n")
+    try:
+        opcion = int(opcion)
+    except ValueError:
+        print("Por favor ingrese un número válido.")
+        continue
+    
+    if opcion == 1:
+        print("Crear cliente")
+        
+        nombre = input("Nombres:\n")
+        apellido = input("Apellidos:\n")
+        movil = int(input("Movil:\n"))
+        correo = input("Correo:\n")
+        tipo_cuenta = input("Tipo de cuenta:\n")
+
+        client = new_client(
+            Nombres=nombre,
+            Apellidos=apellido, 
+            Identificacion=Identificacion,
+            Movil=movil,
+            Correo=correo,
+            tipo_cuenta=tipo_cuenta
+        )
+        client.create_client()
+    elif opcion == 2:
+        print("Consultar cliente")
+        client = manatgement_client()
+        client.query_client(Identificacion)
+    
+    elif opcion == 3:
+        print("Consignacion de dienero")
+        client = manatgement_client()
+        client.consignation(Identificacion)
+        
+    elif opcion == 4:
+        print("Retiro de dinero")
+        client = manatgement_client()
+        client.withdrawal(Identificacion)
+```
+

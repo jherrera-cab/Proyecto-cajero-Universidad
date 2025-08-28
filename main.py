@@ -1,3 +1,34 @@
+"""
+main.py
+========
+
+Este módulo implementa la interfaz principal para el sistema de gestión de clientes de un cajero bancario.
+
+Funcionalidades:
+----------------
+- Crear un nuevo cliente y su cuenta asociada.
+- Consultar el saldo de una cuenta por identificación.
+- Consignar dinero en una cuenta existente.
+- Retirar dinero de una cuenta existente.
+
+Uso:
+----
+Al ejecutar el script, se muestra un menú interactivo en consola donde el usuario puede seleccionar la operación deseada.
+
+Clases utilizadas:
+------------------
+- new_client: Permite crear un nuevo cliente.
+- manatgement_client: Permite consultar saldo, consignar y retirar dinero.
+
+Entradas:
+---------
+- Identificación del cliente (CC)
+- Datos personales para la creación de cliente
+- Valor a consignar o retirar
+
+
+
+"""
 
 from src.clientes import new_client, manatgement_client
 import os
