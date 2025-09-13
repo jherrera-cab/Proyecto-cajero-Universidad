@@ -32,6 +32,7 @@ Entradas:
 
 from src.clientes import new_client, manatgement_client
 import os
+from src.operation import ConsultaSaldo, Consignacion, Retiro
 
 while True:
    # os.system('cls')  # Limpia la consola en Windows
@@ -49,7 +50,7 @@ while True:
     except ValueError:
         print("Por favor ingrese un número válido.")
         continue
-    
+    client = manatgement_client()
     if opcion == 1:
         print("Crear cliente")
         
@@ -69,16 +70,10 @@ while True:
         )
         client.create_client()
     elif opcion == 2:
-        print("Consultar cliente")
-        client = manatgement_client()
-        client.query_client(Identificacion)
+        client.realizar_operacion(Identificacion, ConsultaSaldo)
     
     elif opcion == 3:
-        print("Consignacion de dienero")
-        client = manatgement_client()
-        client.consignation(Identificacion)
+        client.realizar_operacion(Identificacion, Consignacion)
         
     elif opcion == 4:
-        print("Retiro de dinero")
-        client = manatgement_client()
-        client.withdrawal(Identificacion)
+        client.realizar_operacion(Identificacion, Retiro)
