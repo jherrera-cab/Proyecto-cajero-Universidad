@@ -16,7 +16,7 @@ class Operacion(ABC):
 
 
 class Consignacion(Operacion):
-    def ejecutar(self, identificacion):
+    def ejecutar(self, identificacion, value=None):
         row_client = self.data_clientes[self.data_clientes['Identificacion'] == identificacion]
         if len(row_client) == 0:
             print(f"No se encontró cuenta asociada a la identificación {identificacion}.")
@@ -24,7 +24,7 @@ class Consignacion(Operacion):
         
         id_cuenta = row_client['ID_cuenta'].values[0]
         row_cuenta = self.data_cuentas[self.data_cuentas['ID_Cuenta'] == id_cuenta]
-        value = int(input("Valor a consignar:\n"))
+        #value = int(input("Valor a consignar:\n"))
         last_row = row_cuenta.sort_values('Fecha_operacion', ascending=False)
 
         if last_row.empty:
@@ -44,10 +44,10 @@ class Consignacion(Operacion):
         df_cuenta = pd.concat([self.data_cuentas, pd.DataFrame([new_operation])], ignore_index=True)
         df_cuenta.to_csv(self.file_cuentas_path, index=False)
         print(f'Se ha consignado {value} a la cuenta {id_cuenta}.')
-
+        return nuevo_saldo
 
 class Retiro(Operacion):
-    def ejecutar(self, identificacion):
+    def ejecutar(self, identificacion, value=None):
         row_client = self.data_clientes[self.data_clientes['Identificacion'] == identificacion]
         if len(row_client) == 0:
             print(f"No se encontró cuenta asociada a la identificación {identificacion}.")
@@ -55,7 +55,7 @@ class Retiro(Operacion):
         
         id_cuenta = row_client['ID_cuenta'].values[0]
         row_cuenta = self.data_cuentas[self.data_cuentas['ID_Cuenta'] == id_cuenta]
-        value = int(input("Valor a retirar:\n"))
+        #value = int(input("Valor a retirar:\n"))
         last_row = row_cuenta.sort_values('Fecha_operacion', ascending=False)
 
         if last_row.empty:
@@ -79,19 +79,20 @@ class Retiro(Operacion):
         df_cuenta = pd.concat([self.data_cuentas, pd.DataFrame([new_operation])], ignore_index=True)
         df_cuenta.to_csv(self.file_cuentas_path, index=False)
         print(f'Se ha retirado {value} de la cuenta {id_cuenta}.')
-
+        return nuevo_saldo
 
 class ConsultaSaldo(Operacion):
-    def ejecutar(self, identificacion):
+    def ejecutar(self, identificacion, value=None):
         row_client = self.data_clientes[self.data_clientes['Identificacion'] == identificacion]
         if len(row_client) == 0:
-            print(f"No se encontró cliente con identificación {identificacion}.")
-            return
+            return "a1"
         
         id_cuenta = row_client['ID_cuenta'].values[0]
         row_cuenta = self.data_cuentas[self.data_cuentas['ID_Cuenta'] == id_cuenta]
         if row_cuenta.empty:
-            print("No hay movimientos registrados.")
+            print("No movimientos")
+            return "a2"
         else:
             saldo = row_cuenta.sort_values("Fecha_operacion", ascending=True)['Saldo'].iloc[-1]
-            print(f"El saldo actual de la cuenta es: {saldo}")
+            print(f"{saldo}")
+            return saldo

@@ -9,8 +9,4 @@ ID_cliente,ID_cuenta,Nombres,Apellidos,Identificacion,Movil,Correo,Tipo cuenta
 8,1008,Santiago,Pardo Villamil,3344556677,3132233445,santiago.pardo@example.com,Ahorros
 9,1009,Daniela,Suárez Jiménez,7788990011,3204455667,daniela.suarez@example.com,Corriente
 10,1010,Felipe,Rincón Álvarez,6655443322,3167788990,felipe.rincon@example.com,Ahorros
-11,1011,Jhonatan ,Herrera,80774862,3212509138,jherrera@gmail.com,Ahorro
-12,1012,Stevens,Cabrera,80774,32256,jhasjhdajs@correo.com,Ahorro
-13,1013,Stivens,Herrera,7896,6547,correo@ejemplo.com,Ahorro
-14,1014,stivens,Cabrera,9632,3215,correo@correo.com,Ahorro
-15,1015,Stivens,Cabrera,7412,99896,correo@correo.com,Ahorro
+11,1011,Gabriela,herrera,5566,212312,correo,Ahorro

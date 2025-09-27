@@ -66,12 +66,12 @@ class new_client():
         df_client = pd.concat([df_client, pd.DataFrame([new_row_client])], ignore_index=True)
         df_client.to_csv(reader.file_clientes_path, index=False)
         print('Se creo correctamete el cliente con identificacion:', self.Identificacion)
-
+        return 's1'
 
 class manatgement_client():
     def __init__(self):
         self.read_data = Read_Cliente()
         self.data_clientes, self.data_cuentas = self.read_data.read_data()
         
-    def realizar_operacion(self, identificacion, operacion: "Operacion"):
-        operacion(self.data_clientes, self.data_cuentas, self.read_data.file_cuentas_path).ejecutar(identificacion)
+    def realizar_operacion(self, identificacion, operacion: "Operacion", value=None):
+       return operacion(self.data_clientes, self.data_cuentas, self.read_data.file_cuentas_path).ejecutar(identificacion, value)

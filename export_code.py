@@ -5,7 +5,8 @@ scripts = [
     "data/data_clientes.py",
     "src/cajero.py",
     "src/clientes.py",
-    "main.py"
+    "main.py",
+    "src/operation.py"
 ]
 
 path_md = "Codigo.md"
